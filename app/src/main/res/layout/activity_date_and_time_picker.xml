@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+
+        <variable
+            name="viewModel"
+            type="com.sasi.dateandtimepicker.DateAndTimePickerViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/notification_top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+
+            <TextView
+                android:id="@+id/notification_msg_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notification Message" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/update_time_btn"
+            android:layout_below="@+id/notification_top_layout">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <DatePicker
+                    android:id="@+id/date_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:day="@{viewModel.day}"
+                    android:month="@{viewModel.month}"
+                    android:onDateChanged="@{viewModel.dateChanged}"
+                    android:year="@{viewModel.year}" />
+
+                <TimePicker
+                    android:id="@+id/time_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/date_picker"
+                    android:layout_gravity="center_horizontal"
+                    android:headerBackground="@color/colorAccent"
+                    android:timePickerMode="clock" />
+            </RelativeLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/update_time_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="@{(v)->viewModel.updateTimeOnclick(v)}"
+            android:text="Update Time" />
+
+    </RelativeLayout>
+
+</layout>
